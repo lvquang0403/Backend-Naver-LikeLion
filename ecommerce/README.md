@@ -18,7 +18,60 @@
 ![image](https://user-images.githubusercontent.com/104447131/187961589-476275e9-811a-4479-9299-3f77530c93a5.png)
 
 
+### Schema
+```sql
+CREATE TABLE IF NOT EXISTS cart (
+    cart_id int not null AUTO_INCREMENT primary key
+);
+CREATE TABLE IF NOT EXISTS product (
+	product_id int not null AUTO_INCREMENT primary key,
+	name_product varchar(100) not null,
+	product_type char(3),
+	size char(3),
+	quantity int not null,
+	price decimal not null
+);
+CREATE TABLE IF NOT EXISTS cart_item (
+	cart_item_id int not null AUTO_INCREMENT primary key,
+    cart_id int not null,
+	product_id int not null,
+	quantity_wished int not null,
+	date_added date not null,
+	total_amount int not null,
+	FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
+	FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
+CREATE TABLE IF NOT EXISTS customer (
+    customer_id int not null AUTO_INCREMENT primary key,
+	customer_name varchar(50) not null,
+	customer_address varchar(100),
+	phone_no char(20) not null,
+	cart_id int ,
+	FOREIGN KEY (cart_id) REFERENCES cart(cart_id)
+);
+```
+### Data
+```sql
+INSERT INTO product (name_product, product_type, size, quantity, price) VALUES
+('T-shirt','SH','M',100, 300.00),
+('T-shirt','SH','S',100, 300.00),
+('T-shirt','SH','L',100, 300.00),
+('Shirt','SH','M',100, 500.00),
+('Shirt','SH','S',100, 500.00),
+('Shirt','SH','L',100, 500.00),
+('Kaki pant','TS','29',100, 500.00),
+('Kaki','TS','28',100, 550.00),
+('Jean','TS','30',100, 700.00),
+('Short','TS','31',100, 250.00);
 
+
+INSERT INTO customer (customer_name, customer_address, phone_no, cart_id) VALUES
+('Quang', '1004 quoc lo 1a', '0967521710',null),
+('Hoang', 'Tan Hung', '011768321',null),
+('Viet', '67 Nguyen Dinh Chieu', '028707879',null),
+('Hoa', '67 Le Thanh Tong', '0392942939',null),
+('Huong', '122 Tran Binh Trong', '0879283739',null);
+```
 #### Get Product has price < 500
 ##### Patern - localhost:8080/product/find-product/{condition}/{price}
 ##### GET - localhost:8080/product/find-product/less_than/500
