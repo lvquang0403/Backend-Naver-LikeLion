@@ -1,17 +1,15 @@
 # Week3-2
 
-* [Employee API](#post-employee-api)
-  * [Case 1: Error at Controller - Get Employee with invalid @ResponseBody(name, email)](#case-1-error-at-controller---get-employee-with-invalid-responsebodyname-email)
-  * [Case 2: Error at Controller - Get Employee with invalid @ResponseBody(email)](#case-2-error-at-controller---get-employee-with-invalid-responsebodyemail)
-  * [Case 3: Error at Service - Get Employee with valid @ResponseBody and Service throws Exception](#case-3-error-at-service---get-employee-with-valid-responsebody-and-service-throws-exception)
+* [Employee API](#employee-api)
+  * [POST Employee with invalid value](#POST Employee with invalid value name)
+  * [POST Employee with invalid value name](#)
+  * [Spring AOP : Exception at getEmployeeDTO method in EmployeeDTOServiceImpl](#case-3-error-at-service---get-employee-with-valid-responsebody-and-service-throws-exception)
   * [Case 4: Success - Get Employee with valid @ResponseBody and Service gets Dto successfully](#case-4-success---get-employee-with-valid-responsebody-and-service-gets-dto-successfully)
 
 
 * [Get Department API](#get-department-api)
-  * [Case 1: Error at Controller - Get Department with invalid @ResponseBody(deptName, description)](#case-1-error-at-controller---get-department-with-invalid-responsebodydeptname-description)
-  * [Case 2: Error at Controller - Get Department with invalid @ResponseBody(deptName, employeeDtos)](#case-2-error-at-controller---get-department-with-invalid-responsebodydeptname-employeedtos)
-  * [Case 3: Success - Get Department with valid @ResponseBody](#case-3-success---get-department-with-valid-responsebody)
-
+  * [POST Department with invalid value](#case-1-error-at-controller---get-department-with-invalid-responsebodydeptname-description)
+  * [POST Department with valid value (Successfully)](#case-2-error-at-controller---get-department-with-invalid-responsebodydeptname-employeedtos)
 
 ## Employee API
 ### POST Employee with invalid value
@@ -104,110 +102,90 @@ POST localhost:9081/likelion/employee
 }
 ```
 ---
-## Get Department API
-### Case 1: Error at Controller - Get Department with invalid @ResponseBody(deptName, description)
+## Department API
+### POST Department with invalid value
 - Request
 
 ```
-GET /likelion/test-department-dto
+POST localhost:9081/likelion/department
 {
-    "departmentId": 1,
-    "deptName": "Phong 1",
-    "desciption": "",
-    "employeeDtos": [
-        {
-            "employeeId": 1,
-            "name": "Nhan vien 1",
-            "birthDate": "2000-01-01",
-            "gender": "male",
-            "email": "fd@gmail.com"
-        }
-    ]
+"departmentId" : 1,
+"deptName" : "",
+"description" : "description",
+"listEmployee" :
+[
+    {
+        "employeeId":1,
+        "name":"",
+        "birthday": "04-03-2001",
+        "gender":true,
+        "email":"vinhquang1873@@ggmail.com"
+
+    }
+]
 }
 ```
 - Response
 ```json
 {
-  "status": "error",
-  "data": null,
-  "message": "Argument not valid: ['deptName': 'Department name only accept 10-50 characters', 'desciption': 'Desciption cannot be empty']"
+    "status": "Fail",
+    "message": "Argument Not Valid !!",
+    "detailData": {
+        "deptName": "department name field not allowed empty",
+        "listEmployee[0].email": "Email invalid",
+        "listEmployee[0].name": "Number character between 10 and 50!!"
+    }
 }
 ```
 
-### Case 2: Error at Controller - Get Department with invalid @ResponseBody(deptName, employeeDtos)
+### POST Department with valid value (Successfully)
 - Request
 
 ```
-GET /likelion/test-department-dto
+POST localhost:9081/likelion/department
 {
-    "departmentId": 1,
-    "deptName": "Phong 1",
-    "desciption": "Day la phong so 1",
-    "employeeDtos": [
-        {
-            "employeeId": 1,
-            "name": "Nv 1",
-            "birthDate": "2000-01-01",
-            "gender": "male",
-            "email": "000abcgmail.com"
-        }
-    ]
+"departmentId" : 1,
+"deptName" : "Maketing room",
+"description" : "description",
+"listEmployee" :
+[
+    {
+        "employeeId":1,
+        "name":"Le Vinh Quang",
+        "birthday": "04-03-2001",
+        "gender":true,
+        "email":"vinhquang1873@gmail.com"
+
+    }
+]
 }
 ```
 - Response
 ```json
 {
-  "status": "error",
-  "data": null,
-  "message": "Argument not valid: ['deptName': 'Department name only accept 10-50 characters', 'employeeDtos[0].email': 'Gmail address is not valid', 'employeeDtos[0].name': 'Name only accept 10-50 characters']"
-}
-```
-
-### Case 3: Success - Get Department with valid @ResponseBody
-- Request
-
-```
-GET /likelion/test-department-dto
-{
-    "departmentId": 1,
-    "deptName": "Phong 11111111",
-    "desciption": "Day la phong so 1",
-    "employeeDtos": [
-        {
-            "employeeId": 1,
-            "name": "Nhan vien 1",
-            "birthDate": "2000-01-01",
-            "gender": "male",
-            "email": "abc@gmail.com"
-        }
-    ]
-}
-```
-- Response
-```json
-{
-  "status": "success",
-  "data": {
-    "departmentId": 1,
-    "deptName": "Phong 11111111",
-    "desciption": "Day la phong so 1",
-    "employeeDtos": [
-      {
-        "employeeId": 1,
-        "name": "Nhan vien 1",
-        "birthDate": "2000-01-01T00:00:00.000+00:00",
-        "gender": "male",
-        "email": "abc@gmail.com"
-      }
-    ]
-  },
-  "message": null
+    "status": "ok",
+    "message": "Successfully",
+    "detailData": {
+        "departmentId": 1,
+        "deptName": "Maketing room",
+        "description": "description",
+        "listEmployee": [
+            {
+                "employeeId": 1,
+                "name": "Le Vinh Quang",
+                "birthday": "04-03-2001",
+                "gender": true,
+                "email": "vinhquang1873@gmail.com"
+            }
+        ]
+    }
 }
 ```
 - Log
 ```
-2022-09-07 15:57:39.702 - INFO 40009 --- [http-nio-9081-exec-2] com.example.week32.aspect.LoggingAspect :   21 : Before execution(DepartmentDto com.example.week32.service.impl.DepartmentServiceImpl.getDepartmentDto(DepartmentDto))
-2022-09-07 15:57:39.745 - INFO 40009 --- [http-nio-9081-exec-2] com.example.week32.aspect.LoggingAspect :   26 : After execution(DepartmentDto com.example.week32.service.impl.DepartmentServiceImpl.getDepartmentDto(DepartmentDto))
+2022-09-07 17:58:41.972  INFO 26720 --- [nio-9081-exec-7] c.e.s.aspect.LoggingServiceAspect        : before called with args DepartmentDTO(departmentId=1, deptName=Maketing room, description=description, listEmployee=[EmployeeDTO(employeeId=1, name=Le Vinh Quang, birthday=2001-03-04, gender=true, email=vinhquang1873@gmail.com)]) 
+2022-09-07 17:58:41.972  INFO 26720 --- [nio-9081-exec-7] c.e.s.s.impl.DepartmentDTOServiceImpl    : Into getDepartmentDTO method : DepartmentDTO(departmentId=1, deptName=Maketing room, description=description, listEmployee=[EmployeeDTO(employeeId=1, name=Le Vinh Quang, birthday=2001-03-04, gender=true, email=vinhquang1873@gmail.com)])
+2022-09-07 17:58:41.973  INFO 26720 --- [nio-9081-exec-7] c.e.s.aspect.LoggingServiceAspect        : after called with args DepartmentDTO(departmentId=1, deptName=Maketing room, description=description, listEmployee=[EmployeeDTO(employeeId=1, name=Le Vinh Quang, birthday=2001-03-04, gender=true, email=vinhquang1873@gmail.com)]) 
 ```
 
 
