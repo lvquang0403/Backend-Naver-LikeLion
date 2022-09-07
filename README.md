@@ -7,9 +7,9 @@
   * [POST Employee with valid value (Successfully)](#post-employee-with-valid-value-ok)
 
 
-* [Get Department API](#get-department-api)
-  * [POST Department with invalid value](#case-1-error-at-controller---get-department-with-invalid-responsebodydeptname-description)
-  * [POST Department with valid value (Successfully)](#case-2-error-at-controller---get-department-with-invalid-responsebodydeptname-employeedtos)
+* [Department API](#department-api)
+  * [POST Department with invalid value](#post-department-with-invalid-value)
+  * [POST Department with valid value (Successfully)](#post-department-with-valid-value-successfully)
 
 ## Employee API
 ### POST Employee with invalid value
@@ -71,7 +71,7 @@ localhost:9081/likelion/employee
 2022-09-07 17:46:27.154  INFO 11216 --- [nio-9081-exec-6] c.e.s.aspect.LoggingServiceAspect        : after GetEmployeeDTO failed call !!
 ```
 
-### POST Employee with valid value (OK)
+### POST Employee with valid value (Successfully)
 - Request
 
 ```json
