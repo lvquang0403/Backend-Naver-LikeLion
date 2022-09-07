@@ -10,6 +10,7 @@
 * [Department API](#department-api)
   * [POST Department with invalid value](#post-department-with-invalid-value)
   * [POST Department with valid value (Successfully)](#post-department-with-valid-value-successfully)
+  * [Spring AOP : Log at getDepartmetDTO method in DepartmentDTOServiceImpl](#spring-aop-:-log-at-getdepartmetdto-method-in-departmentdtoserviceimpl)
 
 ## Project Configuration
 - application.properties
@@ -190,7 +191,7 @@ POST localhost:9081/likelion/department
     }
 }
 ```
-- Log
+### Spring AOP : Log at getDepartmetDTO method in DepartmentDTOServiceImpl
 ```
 2022-09-07 17:58:41.972  INFO 26720 --- [nio-9081-exec-7] c.e.s.aspect.LoggingServiceAspect        : before called with args DepartmentDTO(departmentId=1, deptName=Maketing room, description=description, listEmployee=[EmployeeDTO(employeeId=1, name=Le Vinh Quang, birthday=2001-03-04, gender=true, email=vinhquang1873@gmail.com)]) 
 2022-09-07 17:58:41.972  INFO 26720 --- [nio-9081-exec-7] c.e.s.s.impl.DepartmentDTOServiceImpl    : Into getDepartmentDTO method : DepartmentDTO(departmentId=1, deptName=Maketing room, description=description, listEmployee=[EmployeeDTO(employeeId=1, name=Le Vinh Quang, birthday=2001-03-04, gender=true, email=vinhquang1873@gmail.com)])
