@@ -1,6 +1,6 @@
 # Week3-2
 
-* [POST Employee API](#post-employee-api)
+* [Employee API](#post-employee-api)
   * [Case 1: Error at Controller - Get Employee with invalid @ResponseBody(name, email)](#case-1-error-at-controller---get-employee-with-invalid-responsebodyname-email)
   * [Case 2: Error at Controller - Get Employee with invalid @ResponseBody(email)](#case-2-error-at-controller---get-employee-with-invalid-responsebodyemail)
   * [Case 3: Error at Service - Get Employee with valid @ResponseBody and Service throws Exception](#case-3-error-at-service---get-employee-with-valid-responsebody-and-service-throws-exception)
@@ -13,7 +13,7 @@
   * [Case 3: Success - Get Department with valid @ResponseBody](#case-3-success---get-department-with-valid-responsebody)
 
 
-## POST Employee API
+## Employee API
 ### POST Employee with invalid value
 - Request
 
@@ -57,63 +57,50 @@ localhost:9081/likelion/employee
 - Response
 ```json
 {
-  "status": "error",
-  "data": null,
-  "message": "Argument not valid: ['email': 'Gmail address is not valid']"
+    "status": "Fail",
+    "message": "Argument Not Valid !!",
+    "detailData": {
+        "name": "Number character between 10 and 50!!"
+    }
 }
 ```
 
-### Case 3: Error at Service - Get Employee with valid @ResponseBody and Service throws Exception 
-- Request
+### Spring AOP : Exception at getEmployeeDTO method in EmployeeDTOServiceImpl
 
-```
-GET /likelion/test-employee-dto
-{
-    "employeeId": 1,
-    "name": "Nhan vien 1",
-    "birthDate": "2000-01-01",
-    "gender": "male",
-    "email": "anh.vn00@gmail.com"
-}
-```
-- Response
-```json
-{
-  "status": "error",
-  "data": null,
-  "message": "An exception occurred while getting DTO"
-}
-```
 - Log
 ```
-2022-09-07 15:42:52.839 -ERROR 36737 --- [http-nio-9081-exec-8] com.example.week32.aspect.LoggingAspect :   31 : Get An exception occurred while getting DTO at execution(EmployeeDto com.example.week32.service.impl.EmployeeServiceImpl.getEmployeeDto(EmployeeDto))
+2022-09-07 17:46:27.141  INFO 11216 --- [nio-9081-exec-6] c.e.s.s.impl.EmployeeDTOServiceImpl      : Employee : EmployeeDTO(employeeId=1, name=Le Vinh Quang, birthday=2001-03-04, gender=true, email=vinhquang1873@gmail.com) 
+2022-09-07 17:46:27.154  INFO 11216 --- [nio-9081-exec-6] c.e.s.aspect.LoggingServiceAspect        : after GetEmployeeDTO failed call !!
 ```
 
-### Case 4: Success - Get Employee with valid @ResponseBody and Service gets Dto successfully 
+### POST Employee with valid value (OK)
 - Request
 
-```
-GET /likelion/test-employee-dto
+```json
+POST localhost:9081/likelion/employee
 {
-    "employeeId": 1,
-    "name": "Nhan vien 1",
-    "birthDate": "2000-01-01",
-    "gender": "male",
-    "email": "anh.vn00@gmail.com"
+    {
+        "employeeId":1,
+        "name":"Le Vinh Quang",
+        "birthday": "04-03-2001",
+        "gender":true,
+        "email":"vinhquang1873@gmail.com"
+
+    }
 }
 ```
 - Response
 ```json
 {
-  "status": "success",
-  "data": {
-    "employeeId": 1,
-    "name": "Nhan vien 1",
-    "birthDate": "2000-01-01T00:00:00.000+00:00",
-    "gender": "male",
-    "email": "anh.vn00@gmail.com"
-  },
-  "message": null
+    "status": "ok",
+    "message": "Successfully",
+    "detailData": {
+        "employeeId": 1,
+        "name": "Le Vinh Quang",
+        "birthday": "04-03-2001",
+        "gender": true,
+        "email": "vinhquang1873@gmail.com"
+    }
 }
 ```
 ---
