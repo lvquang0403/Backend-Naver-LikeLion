@@ -1,7 +1,7 @@
 # Week3-2
 
 * [Employee API](#employee-api)
-  * [POST Employee with invalid value](#POST Employee with invalid value name)
+  * [POST Employee with invalid value](#post-employee-with-invalid-value-name)
   * [POST Employee with invalid value name](#)
   * [Spring AOP : Exception at getEmployeeDTO method in EmployeeDTOServiceImpl](#case-3-error-at-service---get-employee-with-valid-responsebody-and-service-throws-exception)
   * [Case 4: Success - Get Employee with valid @ResponseBody and Service gets Dto successfully](#case-4-success---get-employee-with-valid-responsebody-and-service-gets-dto-successfully)
