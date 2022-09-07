@@ -14,40 +14,45 @@
 
 
 ## POST Employee API
-### POST Employee with invalid @ResponseBody(name, email)
+### POST Employee with invalid value
 - Request
 
-```
-GET /likelion/test-employee-dto
-{
-    "employeeId": 1,
-    "name": "",
-    "birthDate": "2000-01-01",
-    "gender": "male",
-    "email": "abc@email.com"
-}
+```json
+POST localhost:9081/likelion/employee
+    {
+        "employeeId":1,
+        "name":"sds",
+        "birthday": "04-03-2001",
+        "gender":true,
+        "email":"vinhquang1873@@@gmail.com"
+
+    }
 ```
 - Response
 ```json
 {
-  "status": "error",
-  "data": null,
-  "message": "Argument not valid: ['name': 'Name cannot be empty', 'email': 'Gmail address is not valid', 'name': 'Name only accept 10-50 characters']"
+    "status": "Fail",
+    "message": "Argument Not Valid !!",
+    "detailData": {
+        "name": "Number character between 10 and 50!!",
+        "email": "Email invalid"
+    }
 }
 ```
 
-### Case 2: Error at Controller - Get Employee with invalid @ResponseBody(email)
+### POST Employee with invalid value name
 - Request
 
-```
-GET /likelion/test-employee-dto
-{
-    "employeeId": 1,
-    "name": "Nhan vien 1",
-    "birthDate": "2000-01-01",
-    "gender": "male",
-    "email": "abc@yahoo.com"
-}
+```json
+localhost:9081/likelion/employee
+    {
+        "employeeId":1,
+        "name":"sds",
+        "birthday": "04-03-2001",
+        "gender":true,
+        "email":"vinhquang1873@gmail.com"
+
+    }
 ```
 - Response
 ```json
