@@ -10,7 +10,7 @@
 * [Department API](#department-api)
   * [POST Department with invalid value](#post-department-with-invalid-value)
   * [POST Department with valid value (Successfully)](#post-department-with-valid-value-successfully)
-  * [Spring AOP : Log at getDepartmetDTO method in DepartmentDTOServiceImpl](#spring-aop-:-log-at-getdepartmetdto-method-in-departmentdtoserviceimpl)
+  * [Spring AOP : Log at getDepartmetDTO method in DepartmentDTOServiceImpl](#spring-aop--log-at-getdepartmetdto-method-in-departmentdtoserviceimpl)
 
 ## Project Configuration
 - application.properties
