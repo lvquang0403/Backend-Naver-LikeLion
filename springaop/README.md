@@ -11,6 +11,15 @@
   * [POST Department with invalid value](#post-department-with-invalid-value)
   * [POST Department with valid value (Successfully)](#post-department-with-valid-value-successfully)
 
+## Project Configuration
+- application.properties
+```
+server.servlet.context-path=/likelion
+server.port=9081
+logging.pattern.console= %d{yyyy-MM-dd HH:mm:ss} | %-5level | %logger{1.} | %msg%n
+logging.level.root=TRACE
+```
+
 ## Employee API
 ### POST Employee with invalid value
 - Request
