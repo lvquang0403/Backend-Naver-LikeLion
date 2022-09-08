@@ -3,14 +3,14 @@
 * [Employee API](#employee-api)
   * [POST Employee with invalid value](#post-employee-with-invalid-value-name)
   * [POST Employee with invalid value name](#post-employee-with-invalid-value)
-  * [Spring AOP : Exception at getEmployeeDTO method in EmployeeDTOServiceImpl](#spring-aop--exception-at-getemployeedto-method-in-employeedtoserviceimpl)
   * [POST Employee with valid value (Successfully)](#post-employee-with-valid-value-ok)
+* [Spring AOP : Exception at getEmployeeDTO method in EmployeeDTOServiceImpl](#spring-aop--exception-at-getemployeedto-method-in-employeedtoserviceimpl)
 
 
 * [Department API](#department-api)
   * [POST Department with invalid value](#post-department-with-invalid-value)
   * [POST Department with valid value (Successfully)](#post-department-with-valid-value-successfully)
-  * [LOG at DepartmentDTOServiceImpl class](#log-at-departmentdtoserviceimpl-class)
+* [LOG at DepartmentDTOServiceImpl class](#log-at-departmentdtoserviceimpl-class)
 
 ## Employee API
 ### POST Employee with invalid value
