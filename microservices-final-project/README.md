@@ -4,7 +4,7 @@
 
 ### Câu 1. Tạo một `Config Server` sử dụng git remote, gồm 3 file:
 
-- link: https://github.com/duclongdev/config-repositories
+- link: https://github.com/lvquang0403/spring-cloud-config-server-repo
 ### Cập nhật properties khi ứng dụng đang chạy
 - `POST` http://localhost:8765/actuator/refresh
 
